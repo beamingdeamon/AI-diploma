@@ -17,7 +17,7 @@ class AuthController extends Controller
 {
 
   public function register(Request $request){
-    $data = $request->only('email', 'first_name', 'last_name', 'password','role_id');
+    $data = $request->only('email', 'first_name', 'last_name', 'password','is_admin');
     $validator = Validator::make($data, [
       'email' => 'required|email|unique:users',
       'first_name' => 'required|string',
@@ -40,7 +40,7 @@ class AuthController extends Controller
       'user_id'=>$user->id,
       'first_name'=> $request->first_name,
       'last_name'=> $request->last_name,
-      'role_id'=> $request->is_admin,
+      'is_admin'=> $request->is_admin,
     ]);
 
     return response()->json([
