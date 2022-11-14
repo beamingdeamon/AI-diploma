@@ -40,7 +40,7 @@ class AuthController extends Controller
       'user_id'=>$user->id,
       'first_name'=> $request->first_name,
       'last_name'=> $request->last_name,
-      'is_admin'=> $request->is_admin,
+      'is_admin'=> $request->is_admin
     ]);
 
     return response()->json([

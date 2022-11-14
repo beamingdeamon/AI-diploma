@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PlannerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +23,6 @@ Route::group(['middleware' => ['jwt.verify']], function(){
     Route::delete('/logout', [TokenController::class, 'deleteToken']);
     Route::get('/user', [UserController::class, 'getInfo']);
     Route::put('/user/edit', [UserController::class, 'changeUserInfo']);
+    Route::post('/planner', [PlannerController::class, 'createPlanner']);
+    Route::get('/planner', [PlannerController::class, 'getPlanner']);
 });

@@ -13,15 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_infos', function (Blueprint $table) {
+        Schema::create('planners', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->float('average')->default(0);
-            $table->integer('scores')->default(0);
-            $table->integer('is_admin')->default(0);
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->timestamps();
         });
     }
 
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_infos');
+        Schema::dropIfExists('planners');
     }
 };

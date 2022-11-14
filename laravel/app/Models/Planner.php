@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserInfo extends Model
+class Planner extends Model
 {
+
     use HasFactory;
     protected $fillable = [
-        'user_id','first_name','last_name','is_admin', 'average', 'scores'
+        'user_id','start_date','end_date'
     ];
     public $timestamps = false;
 
     public function user(){
       return $this->belongsTo(User::class, 'user_id');
     }
-
 }
