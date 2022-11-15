@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PlannerController;
+use App\Http\Controllers\TypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,6 @@ Route::group(['middleware' => ['jwt.verify']], function(){
     Route::put('/user/edit', [UserController::class, 'changeUserInfo']);
     Route::post('/planner', [PlannerController::class, 'createPlanner']);
     Route::get('/planner', [PlannerController::class, 'getPlanner']);
+    Route::post('/type', [TypeController::class, 'createType']);
+    Route::get('/type', [TypeController::class, 'getType']);
 });
