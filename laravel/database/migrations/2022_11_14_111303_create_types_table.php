@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('types', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('first_question');
+            $table->string('second_question');
+            $table->boolean('answer_1');
+            $table->average('answer_2');
             $table->timestamps();
         });
     }

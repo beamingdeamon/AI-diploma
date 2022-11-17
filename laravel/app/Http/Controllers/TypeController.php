@@ -4,82 +4,48 @@ namespace App\Http\Controllers;
 
 use App\Models\Type;
 use Illuminate\Http\Request;
+use App\Models\Token;
+
+use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+use App\JWT\Jwt;
+
 
 class TypeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function createType(Request $request)
     {
-        //
-    }
+        $user = Jwt::validation($request->bearerToken());
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+     
+        $data = $request->only('first_question', 'second_question', 'answer_1', 'answer_2');
+        $validator = Validator::make($data, [
+          'answer_1' => 'required|boolean'
+          'answer_2' => 'required|average'
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->messages()], 300);
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        //create planner in db
+        $type = Type::create([
+            
+            'first_question' => $request->answer_1,
+            'second_question' => $request->answer_2,
+            'user_id' => $user->id
+        ]);
+       
+        return response()->json($type, 200);
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Type  $type
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Type $type)
+    public function getType(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Type  $type
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Type $type)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Type  $type
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Type $type)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Type  $type
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Type $type)
-    {
-        //
+        $user = Jwt::validation($request->bearerToken());
+        return response()->json(Type::with('user')->find($user->id), 200);
+        
     }
 }
+
+
+    
+
