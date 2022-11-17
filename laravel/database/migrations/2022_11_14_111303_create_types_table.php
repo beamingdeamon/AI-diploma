@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('first_question');
             $table->string('second_question');
             $table->boolean('answer_1');
-            $table->average('answer_2');
+            $table->float('answer_2');
             $table->timestamps();
         });
     }

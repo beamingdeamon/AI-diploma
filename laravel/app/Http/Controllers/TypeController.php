@@ -21,8 +21,11 @@ class TypeController extends Controller
      
         $data = $request->only('first_question', 'second_question', 'answer_1', 'answer_2');
         $validator = Validator::make($data, [
-          'answer_1' => 'required|boolean'
-          'answer_2' => 'required|average'
+          'answer_1' => 'required|boolean',
+          'answer_2' => 'required|avg',
+          'first_question' => 'required|string',
+          'second_question' => 'required|string'
+
         ]);
         if ($validator->fails()) {
             return response()->json(['error' => $validator->messages()], 300);
