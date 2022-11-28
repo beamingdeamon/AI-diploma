@@ -10,7 +10,7 @@ class Planner extends Model
 
     use HasFactory;
     protected $fillable = [
-        'user_id','start_date','end_date'
+        'user_id','end_date', 'listening' , 'reading' ,'writing', 'wish_total'
     ];
     public $timestamps = false;
 

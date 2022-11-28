@@ -9,7 +9,7 @@ class UserInfo extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id','first_name','last_name','is_admin', 'average', 'scores'
+        'user_id','first_name','last_name','is_admin', 'average', 'scores', 'current_exercise'
     ];
     public $timestamps = false;
 
