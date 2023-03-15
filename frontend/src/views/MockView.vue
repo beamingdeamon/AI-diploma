@@ -1,5 +1,6 @@
 <template>
     <body>
+        
         <div class="menu-bar">
             <ul>
                 <li><a href="#">Home</a></li>
@@ -10,7 +11,12 @@
         </div>
 
             <form>
-            <div class="form-group">    
+            <div class="form-group"> 
+                
+                <iframe src="https://drive.google.com/file/d/14qlR3ZiORFRob8Ol7s23Rl_ISNor8P99/preview" width="640" height="480" allow="autoplay"></iframe>
+               
+
+                
                 <table>
                     <tr>
                     <th>#</th>
@@ -155,7 +161,10 @@ export default {
         background-size: cover
         background-repeat: no-repeat
         background-attachment: fixed
-        
+       
+        height: 100%
+        overflow: auto
+        margin-bottom: 20px
         height: 100vh
         display: flex
         align-items: center
@@ -171,6 +180,7 @@ export default {
         left: 0
         right: 0
         z-index: 1
+        margin-bottom: 20px
 
     .menu-bar ul
         list-style: none
@@ -181,6 +191,7 @@ export default {
     .menu-bar li
         display: inline-block
         padding: 0 10px
+
 
     .menu-bar a
         color: white
@@ -213,11 +224,13 @@ export default {
         align-self: center
 
     .form-group
-        margin-bottom: 20px
+        margin-bottom: -100px
         align-self: center
         align-items: center
         text-align: center
         border-radius: 10px
+        width: 1000px
+        
 
         
     table 
@@ -230,11 +243,12 @@ export default {
         margin: 0 auto
         font-weight: bold
         color: #0239c0
-        
+        padding-top: 20px
+       
     th
         height: 30px
         width: 50%
-        background-color: #5768bdae
+        background-color: rgba(15, 76, 129, 1.00)
         text-align: center
         border: 1px solid black
         border-collapse: collapse
@@ -252,25 +266,25 @@ export default {
         border-collapse: collapse
         align-content: center
         align-self: center
-        color: #0239c0
+        color: rgba(15, 76, 129, 1.00)
         font-weight: bold
         font-family: "Times new roman", sans-serif
         font-size: 18px
     
     input[type="text"]
         border: none
-        border-bottom: 10px solid #ddd
+        border-bottom: 5px solid #ddd
         background-color: transparent
         outline: none
-        height: 15px
-        
+        height: 20px
+        font-family: Arial, sans-serif
         font-size: 20px
         text-transform: uppercase
-        color: #1F2937 
+        color: rgba(15, 76, 129, 1.00) 
         transition: all 0.3s
     
     input[type="text"]:focus
-        border-bottom: 10px solid #0239c0
+        border-bottom: 1px solid #0239c0
         color: #0239c0
         
     button
@@ -318,5 +332,11 @@ export default {
     button:active
         transform: scale(0.97)
     
-  
+    iframe
+   
+        width: 110%
+        height: 500px
+        border: 1px solid #ccc
+        margin-top: 10px
+
 </style>

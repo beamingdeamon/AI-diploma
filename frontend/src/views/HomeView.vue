@@ -23,11 +23,11 @@
         
         </div>
         <div class="form-group">
-          <button>
+          <a href="/mocks"><button>
           <span class="transition"></span>
           <span class="gradient"></span>
           <span class="btn">Log In</span>
-          </button>
+          </button></a>
         </div>
       </form>
     <p style="font-family: Open Sans, sans-serif;"> Don't have an account? <a style= "font-family: Open Sans, sans-serif; font-weight: bold;" href="/register">Sign up!</a></p>
