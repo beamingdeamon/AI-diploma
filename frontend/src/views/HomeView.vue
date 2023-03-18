@@ -1,11 +1,25 @@
 <template>
   <body>
-    
-
+    <div class="menu-logo">
+      <img src="logo.png" alt="menu-logo">
+    </div>
+    <div class="menu-bar">
+      <ul>
+          <li><a href="/mocks">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="menu-buttons">
+      <button>Log in</button>
+      <button>Register</button>
+    </div>
     <div class="container">
       <form>
-        <h1 style="color: black; font-family: Open Sans, sans-serif; font-size: 36px;  text-shadow: 2px 2px #ddd; 
-        letter-spacing: 2px; margin-bottom: 40px;">Welcome to an IELTS tracker!</h1>
+
+        <h1 style="color: #2f1c6a; font-family: Arial, Helvetica, sans-serif, sans-serif; font-size: 36px!important; font-weight: 700!important; text-shadow: 2px 2px #ddd; 
+        letter-spacing: 2px; margin-bottom: 25px!important; margin-top: 25px!important; text-align: center!important;">Welcome to an IELTS tracker!</h1>
         
           
         <div class="form-group">
@@ -69,14 +83,67 @@
   <style lang="sass" scoped>
   body
     
-    background-image: url("C:\Users\kudab\OneDrive\Рабочий стол\KIMEP senior\AI-diploma\frontend\public\bk.jpg")
+    
     background-size: cover
     background-repeat: no-repeat
     background-attachment: fixed
-    height: 100vh
+    height: 140px
+   
     display: flex
-    align-items: center
-    justify-content: center
+    
+    justify-content: space-between
+    padding: 0 20px
+    .menu-logo
+      display: flex
+      flex-grow: 1
+
+    .menu-logo img
+      height: 120px
+      width: auto
+      position: relative
+      z-index: 9999
+      visibility: visible
+    .menu-bar
+      background-color: #ffffff
+      width: 100%
+      height: 140px
+      display: flex
+      justify-content: center
+      align-items: center
+      position: fixed
+      text-align: center
+      padding: 10px 
+    .menu-bar ul
+        list-style: none
+        margin: 0
+        padding: 0   
+    .menu-bar li
+        display: inline-block
+        margin: 0 50px
+
+
+    .menu-bar a
+        color: black
+        font-family: "Garamond", serif
+        font-size: 28px
+        font-weight: bold
+        
+    
+    .menu-buttons 
+      flex: 0 0 auto
+      display: flex
+      align-items: center
+
+
+    .menu-buttons button 
+      background-color: transparent
+      border: 2px solid black
+      color: black
+      font-size: 16px
+      padding: 10px 20px
+      margin-left: 20px
+      cursor: pointer
+    
 
 
   .container
@@ -116,21 +183,22 @@
 
   input[type="text"],
   input[type="password"], 
-    border: none
-    font-family: "Open Sans", sans-serif
-    border-bottom: 2px solid #ddd
-    background-color: transparent
-    outline: none
-    height: 40px
-    width: 80%
-    font-size: 24px
-    color: #00239c
-    transition: all 0.3s
+    border: 1px solid #dadce0
+    border-radius: 4px
+    box-shadow: 0 0 0 transparent
+    font-size: 16px
+    line-height: 24px
+    outline: transparent
+    padding: 11px 16px
+    transition: border .3s,box-shadow .3s
+    width: 100%
 
   input[type="text"]:focus,
   input[type="password"]:focus
-    border-bottom: 2px solid #00239c
-    color: #00239c
+    border: 2px solid #00239c!important
+    padding: 11px 16px
+    transition: border .3s,box-shadow .3s
+    width: 100%
 
   button
 
