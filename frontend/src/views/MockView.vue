@@ -1,13 +1,18 @@
+
 <template>
     <body>
-        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+    
         <div class="menu-bar">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
+        <ul>
+            <li class ="logotype1"><a href="/?">                    <div><b>IELTS</b>planner</div>
+            <span>Listening & Reading</span>
+            </a></li>
+        </ul>
         </div>
 
             <form>
@@ -157,72 +162,103 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-    body
-        background-size: cover
-        background-repeat: no-repeat
-        background-attachment: fixed
-       
-        height: 100%
-        overflow: auto
-        margin-bottom: 20px
-        height: 100vh
-        display: flex
-        align-items: center
-        justify-content: center
+ body
+    background-size: cover
+    background-repeat: no-repeat
+    background-attachment: fixed
+    background-color: #EEEEEE
+    height: 100%
+    overflow: auto
+    margin-bottom: 20px
+    height: 100vh
+    display: flex
+    
+ 
     .menu-bar
-        background-color: rgba(15, 76, 129, 1.00)
-        width: 100%
-        height: 50px
-        display: flex
-        align-items: center
-        position: fixed
-        top: 0
-        left: 0
-        right: 0
-        z-index: 1
-        margin-bottom: 20px
-
-    .menu-bar ul
-        list-style: none
-        margin: 0
-        padding: 0
-        display: flex
-
-    .menu-bar li
+      background-color: #EEEEEE
+      
+      width: 100%
+      height: 100px
+      display: flex
+      flex-direction: row
+      align-items: center
+      position: fixed
+      z-index: 10
+    
+   
+    .logotype1,
+    .logotype1:hover,
+    .logotype1 div
+        
+        position: relative
         display: inline-block
-        padding: 0 10px
-
-
-    .menu-bar a
-        color: white
+        font-size: 36px
+        color: black
+        text-shadow: 2px 4px 3px rgba(0,0,0,0.2)
+        font-family: 'DM sans', sans-serif
+        font-weight: 100
         text-decoration: none
-        font-size: 20px
-
-    .container
-        display: flex
-        align-items: center
-        justify-content: center
-        background-color: white
-        border-radius: 10px
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22)
-        padding: 40px
-        width: 100%
-        max-width: 800px
-        text-align: center
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)
-        display: inline-block
-        margin-top: 50px
+        line-height: 16px
+    .logotype1 div
+        display: block
+    .logotype1 b
+        letter-spacing: 2px
+        font-size: 44px
+        color: #423FE6
+        text-shadow: 2px 4px 3px rgba(0,0,0,0.3)
+        font-weight: 600
+        background: #EEEEEE
+    .logotype1 span
+        text-shadow: 1px 2px 1px rgba(0,0,0,0.2)
+        display: block
+        float: right
+        font-size: 12px
+        color: #423FE6
+        line-height: 6px
+    .logotype1:before
         position: absolute
-        top: 50%
-        left: 50%
-        transform: translate(-50%, -50%)
-
-    .container:hover
-        box-shadow: 0 30px 38px rgba(0,35, 156, 0.3), 0 30px 12px rgba(0,35, 156, 0.22)
-        align-content: center
-        align-items: center
-        align-self: center
-
+        top: -12px
+        left: 0
+        content: ""
+        width: 66px
+        height: 66px
+        transition: all 0.3s ease
+        z-index: -1
+        box-sizing: content-box
+    .logotype1:hover:before
+        transform: scale(1.1)
+        border: 8px solid black
+        @media (max-width:600px)
+    .logotype1,
+    .logotype1:hover,
+    .logotype1 div
+        font-size: 26px
+        line-height: 6px
+        margin: 20px 0 20px 20px
+    .logotype1 b
+        font-size: 34px
+    .logotype1 span
+        font-size: 14px
+        line-height: 4px
+    .logotype1:before
+        top: -9px
+        border: 6px solid black
+        width: 52px
+        height: 52px
+    .logotype1:hover:before
+        border: 7px solid #423FE6
+    button
+      background: #423FE6
+      border-radius: 10px
+      color: white
+      font-size: 24px
+      padding: 10px 30px 10px 30px
+      font-family: "DM sans", sans-serif
+      
+ 
+    button a:visited
+      color: white
+      text-decoration: none
     .form-group
         margin-bottom: -100px
         align-self: center
@@ -235,7 +271,7 @@ export default {
         
     table 
         width: 50%
-        font-family: "Open Sans", sans-serif
+        font-family: "DM Sans", sans-serif
         align-self: center
         align-content: center
         align-items: center
@@ -289,7 +325,7 @@ export default {
         
     button
 
-        font-family: "Open Sans", sans-serif
+        font-family: "DM Sans", sans-serif
         font-size: 17px
         padding: 1em 2.7em
         font-weight: 500
@@ -333,10 +369,10 @@ export default {
         transform: scale(0.97)
     
     iframe
-   
+        align-items: center
         width: 110%
         height: 500px
         border: 1px solid #ccc
         margin-top: 10px
 
-</style>
+</style> 
