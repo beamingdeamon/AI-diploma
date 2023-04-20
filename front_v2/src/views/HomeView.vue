@@ -1,0 +1,80 @@
+<template>
+  <div class="home flex flex-row w-full items-center justify-center">
+    <div class="left w-4/12">
+      <h1 class="mt-24 text-5xl font-bold">Your IELTS success is <span class="text-indigo-500">our priority</span></h1>
+      <h2 class="mt-7 text-2xl font-semibold">Welcome to our innovative and free IELTS Reading study platform! Say goodbye to generic study plans that don't work for you. Our platform generates a personalized study plan just for you based on your mock test mistakes and deadline. No two plans are the same! Our individualized approach guarantees that you'll stay disciplined and focused on achieving a score of 7+ on your Reading IELTS exam. Our platform is easy to use and will guide you step-by-step through your daily exercises. Join us today and start your journey towards IELTS Reading success!</h2>
+      <h3 class="text-xl text-red-500 font-bold mt-10">For now you can access only Reading exercises. But our project is in the process of generating more opportunities for you. </h3>
+    </div>
+    <div class="right w-4/12">
+      <div class="flex flex-row justify-around">
+        <img src="../assets/main_1.png" class="w-5/12" alt="">
+        <img src="../assets/main_2.png" class="w-5/12" alt="">
+      </div>
+      <div class="flex flex-col items-center mt-10">
+        <h1 class="font-bold text-4xl text-indigo-500 tracking-wide">Let's start!</h1>
+        <button v-if="isLogin" class="shadow mt-10 text-2xl bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button" @click="goTest">
+          Start Test
+        </button>
+        <form class="w-full max-w-sm mt-10" v-if="!isLogin">
+          <div class="md:flex md:items-center content-center mb-6 ml-20">
+            <div class="md:w-2/3">
+              <input v-model="mail" required class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" placeholder="E-mail">
+            </div>
+          </div>
+          <div class="md:flex md:items-center mb-6 ml-20">
+            <div class="md:w-2/3">
+              <input minlength="6" required v-model="password" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-password" type="password" placeholder="Password">
+            </div>
+          </div>
+          <div class="md:flex md:items-center">
+            <div class="md:w-1/3"></div>
+            <div class="md:w-2/3">
+              <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button" @click="login">
+                Log In
+              </button>
+            </div>
+          </div>
+        </form>
+        <h2 class="text-xl font-bold" v-if="!isLogin">Don’t have an account? <a href="">Sign in</a>! </h2>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import axios from 'axios'
+export default {
+  name: 'HomeView',
+  data() {
+    return {
+      mail: "",
+      password: "",
+      isLogin: false
+    }
+  },
+  methods: {
+    login(){
+      axios.post('http://localhost:8000/api/login',  {
+        email: this.mail, 
+        password: this.password
+            }) .then(function (response) {
+            window.localStorage.setItem("token", response.data.accessToken)
+            // window.localStorage.getItem("token")
+            // window.localStorage.removeItem("token")
+            window.location.replace("/pre-mock");
+          }).catch(function () {
+            alert("Неверный логин или пароль")
+          })
+    },
+    goTest(){
+      this.$router.push('/pre-mock');
+      window.localStorage.removeItem("slide")
+    }
+  },
+  mounted() {
+    if(window.localStorage.getItem('token')){
+      this.isLogin = true
+    }
+  },
+}
+</script>
