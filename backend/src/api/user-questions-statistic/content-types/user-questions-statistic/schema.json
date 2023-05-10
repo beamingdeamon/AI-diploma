@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_questions_statistics",
+  "info": {
+    "singularName": "user-questions-statistic",
+    "pluralName": "user-questions-statistics",
+    "displayName": "User Questions Statistic"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user_id": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "admin::user"
+    },
+    "type1": {
+      "type": "decimal"
+    },
+    "type2": {
+      "type": "decimal"
+    },
+    "type3": {
+      "type": "decimal"
+    },
+    "type4": {
+      "type": "decimal"
+    },
+    "type5": {
+      "type": "decimal"
+    },
+    "type6": {
+      "type": "decimal"
+    },
+    "type7": {
+      "type": "decimal"
+    },
+    "type8": {
+      "type": "decimal"
+    },
+    "type9": {
+      "type": "decimal"
+    },
+    "type10": {
+      "type": "decimal"
+    },
+    "type11": {
+      "type": "decimal"
+    },
+    "type12": {
+      "type": "decimal"
+    },
+    "type13": {
+      "type": "decimal"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_study_schedules",
+  "info": {
+    "singularName": "user-study-schedule",
+    "pluralName": "user-study-schedules",
+    "displayName": "User Study Schedule"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user_id": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "admin::user"
+    },
+    "start_date": {
+      "type": "date"
+    },
+    "end_date": {
+      "type": "date"
+    },
+    "total_exercises": {
+      "type": "integer"
+    }
+  }
+}
