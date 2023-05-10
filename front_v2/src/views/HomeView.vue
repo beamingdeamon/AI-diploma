@@ -54,17 +54,20 @@ export default {
   },
   methods: {
     login(){
-      axios.post('http://localhost:8000/api/login',  {
-        email: this.mail, 
-        password: this.password
-            }) .then(function (response) {
-            window.localStorage.setItem("token", response.data.accessToken)
-            // window.localStorage.getItem("token")
-            // window.localStorage.removeItem("token")
+        axios.post('http://localhost:1337/api/auth/local', {
+            identifier: this.mail,
+            password: this.password,
+            username: this.username,
+          },{
+              headers: {
+                  Authorization: "Bearer 1538322b334657a8a270866536fe7f3f94d7dc68dc4e0609dc2eccefccfceddbcec3e0438d6abd159f230bfb7795bca378849691f05f0c970c1d3940e1c412ee533267db63b065c327956ba674794efca73eaef1c1a9e6762e49bf050cd4d68ddfbec98adb8cd808b1c731e36a65474010ebf894cdee5b9c1d9a9e883db341a9"
+              }
+          }) .then(function (response){
+              window.localStorage.setItem("token", response.data.jwt)
             window.location.replace("/pre-mock");
           }).catch(function () {
             alert("Неверный логин или пароль")
-          })
+        })
     },
     goTest(){
       this.$router.push('/pre-mock');

@@ -22,7 +22,7 @@ export default {
     methods: {
         SecondSlide(){
             window.localStorage.removeItem('slide')
-            this.$router.go()
+            this.$router.push("/first-mock")
         },
         comeBack(){
             window.localStorage.setItem('slide', 2)

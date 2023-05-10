@@ -6,10 +6,10 @@
 
 <script>
 export default {
-    mounted() {
-        if(!localStorage.getItem("token")){
-            window.location.replace("/");
-        }
-    },
+    // mounted() {
+    //     if(!localStorage.getItem("token")){
+    //         window.location.replace("/");
+    //     }
+    // },
 }
 </script>

@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Register from '../views/RegisterView.vue'
 import PreMock from '../views/PreMockView.vue'
+import FirstMock from '../views/FirstMockView.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/pre-mock',
     name: 'pre-mock',
     component: PreMock,
+    meta: {layout: 'main'}
+  },{
+    path: '/first-mock',
+    name: 'first-mock',
+    component: FirstMock,
     meta: {layout: 'main'}
   }
 ]
