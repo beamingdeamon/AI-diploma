@@ -51,6 +51,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     data() {
     return {
@@ -96,7 +97,8 @@ export default {
         {ans : ""},
         {ans : ""},
         {ans : ""},
-      ]
+      ],
+    results: []
     }
   },methods:{
     checkAns(){
@@ -108,11 +110,12 @@ export default {
         let type6 = 0
         let type7 = 0
         let type8 = 0
-
+        let answers = 0
         //first type
         for (let index = 0; index < 7; index++) {
             if(this.input_ans[index].ans.toLowerCase() === this.answers[index]){
                 type1++
+                answers++
             }
             
         }
@@ -121,6 +124,7 @@ export default {
         for (let index = 7; index < 13; index++) {
             if(this.input_ans[index].ans.toLowerCase() === this.answers[index]){
                 type2++
+                answers++
             }
             
         }
@@ -129,6 +133,7 @@ export default {
         for (let index = 13; index < 18; index++) {
             if(this.input_ans[index].ans.toUpperCase() === this.answers[index]){
                 type3++
+                answers++
             }
             
         }
@@ -137,6 +142,7 @@ export default {
         for (let index = 18; index < 23; index++) {
             if(this.input_ans[index].ans.toUpperCase() === this.answers[index]){
                 type4++
+                answers++
             }
             
         }
@@ -145,6 +151,7 @@ export default {
         for (let index = 23; index < 26; index++) {
             if(this.input_ans[index].ans.toLowerCase() === this.answers[index]){
                 type5++
+                answers++
             }
             
         }
@@ -153,6 +160,7 @@ export default {
         for (let index = 26; index < 31; index++) {
             if(this.input_ans[index].ans.toUpperCase() === this.answers[index]){
                 type6++
+                answers++
             }
             
         }
@@ -161,6 +169,7 @@ export default {
         for (let index = 31; index < 36; index++) {
             if(this.input_ans[index].ans.toUpperCase() === this.answers[index]){
                 type7++
+                answers++
             }
             
         }
@@ -169,12 +178,70 @@ export default {
         for (let index = 36; index < 40; index++) {
             if(this.input_ans[index].ans.toUpperCase() === this.answers[index]){
                 type8++
+                answers++
             }
             
         }
         type8 = type8 / 0.04;
         let types_array = [type1, type2, type3, type4, type5,type6,type7,type8] 
+        let user_id = window.localStorage.getItem("user_id")
         console.log(types_array)
+        let mark = 0
+        if(answers === 39 || answers === 40){
+            mark = 9.0
+        }else if(answers === 37 || answers === 38){
+            mark = 8.5
+        }else if(answers === 35 || answers === 36){
+            mark = 8.0
+        }else if(answers === 33 || answers === 34){
+            mark = 7.5
+        }else if(answers === 30 || answers === 31 || answers === 32){
+            mark = 7.0
+        }else if(answers === 27 || answers === 28 || answers === 29 ){
+            mark = 6.5
+        }else if(answers === 26 || answers === 25 || answers === 23 ){
+            mark = 6.0
+        }else if(answers === 22 || answers === 21 || answers === 20 || answers === 19 ){
+            mark = 5.5
+        }else if(answers === 18 || answers === 17 || answers === 16 || answers === 15 ){
+            mark = 5.0
+        }else if(answers === 14 || answers === 13 ){
+            mark = 4.5
+        }else if(answers === 10 || answers === 11 || answers === 12 ){
+            mark = 4.0
+        }else if(answers === 8 || answers === 9 ){
+            mark = 3.5
+        }else if(answers === 6 || answers === 7 ){
+            mark = 3.0
+        }else if(answers === 4 || answers === 5 ){
+            mark = 2.5
+        }else if(answers === 3 || answers === 2 ){
+            mark = 2.0
+        }
+        localStorage.setItem("mark" , mark)
+        axios.post('http://localhost:1337/api/user-questions-statistics', {
+            data:{
+                user_id: user_id,
+                type1 : types_array[0],
+                type2 : types_array[1],
+                type3 : types_array[2],
+                type4 : types_array[3],
+                type5 : types_array[4],
+                type6 : types_array[5],
+                type7 : types_array[6],
+                type8 : types_array[7],
+                mark : mark
+            }
+            
+          },{
+              headers: {
+                  Authorization: "Bearer 1538322b334657a8a270866536fe7f3f94d7dc68dc4e0609dc2eccefccfceddbcec3e0438d6abd159f230bfb7795bca378849691f05f0c970c1d3940e1c412ee533267db63b065c327956ba674794efca73eaef1c1a9e6762e49bf050cd4d68ddfbec98adb8cd808b1c731e36a65474010ebf894cdee5b9c1d9a9e883db341a9"
+              }
+          }) .then(function (){
+            window.location.replace('/config-calendar')
+          }).catch(function () {
+            alert("Неверный логин или пароль")
+        })
     }
   }
 }

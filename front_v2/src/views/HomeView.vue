@@ -12,8 +12,11 @@
       </div>
       <div class="flex flex-col items-center mt-10">
         <h1 class="font-bold text-4xl text-indigo-500 tracking-wide">Let's start!</h1>
-        <button v-if="isLogin" class="shadow mt-10 text-2xl bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button" @click="goTest">
+        <button v-if="isLogin && !isMocked" class="shadow mt-10 text-2xl bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button" @click="goTest">
           Start Test
+        </button>
+        <button v-if="isLogin && isMocked" class="shadow mt-10 text-2xl bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button" @click="goTest">
+          Go to Calendar
         </button>
         <form class="w-full max-w-sm mt-10" v-if="!isLogin">
           <div class="md:flex md:items-center content-center mb-6 ml-20">
@@ -49,35 +52,86 @@ export default {
     return {
       mail: "",
       password: "",
-      isLogin: false
+      isLogin: false,
+      isMocked: false
     }
   },
   methods: {
     login(){
+      let user_id
         axios.post('http://localhost:1337/api/auth/local', {
             identifier: this.mail,
             password: this.password,
-            username: this.username,
           },{
               headers: {
                   Authorization: "Bearer 1538322b334657a8a270866536fe7f3f94d7dc68dc4e0609dc2eccefccfceddbcec3e0438d6abd159f230bfb7795bca378849691f05f0c970c1d3940e1c412ee533267db63b065c327956ba674794efca73eaef1c1a9e6762e49bf050cd4d68ddfbec98adb8cd808b1c731e36a65474010ebf894cdee5b9c1d9a9e883db341a9"
               }
           }) .then(function (response){
+              user_id = response.data.user.id;
               window.localStorage.setItem("token", response.data.jwt)
-            window.location.replace("/pre-mock");
+              window.localStorage.setItem("user_id", response.data.user.id)
+              axios.get('http://localhost:1337/api/user-questions-statistics',{
+                    headers: {
+                        Authorization: "Bearer 1538322b334657a8a270866536fe7f3f94d7dc68dc4e0609dc2eccefccfceddbcec3e0438d6abd159f230bfb7795bca378849691f05f0c970c1d3940e1c412ee533267db63b065c327956ba674794efca73eaef1c1a9e6762e49bf050cd4d68ddfbec98adb8cd808b1c731e36a65474010ebf894cdee5b9c1d9a9e883db341a9"
+                    }
+                }) .then(function (response){
+                  let isMocked = false
+                  for (const item of response.data.data) {
+                    if(item.attributes.user_id === user_id){
+                      isMocked = true;
+                    }
+                  }
+                  if(isMocked){
+                    localStorage.setItem("isMocked", true)
+                    window.location.replace("/calendar")
+                  }
+                  else{
+                      localStorage.setItem("isMocked", false)
+                    window.location.replace("/pre-mock")
+                  }
+                })
           }).catch(function () {
             alert("Неверный логин или пароль")
         })
     },
+    checkMock(user_id){
+      axios.get('http://localhost:1337/api/user-questions-statistics',{
+              headers: {
+                  Authorization: "Bearer 1538322b334657a8a270866536fe7f3f94d7dc68dc4e0609dc2eccefccfceddbcec3e0438d6abd159f230bfb7795bca378849691f05f0c970c1d3940e1c412ee533267db63b065c327956ba674794efca73eaef1c1a9e6762e49bf050cd4d68ddfbec98adb8cd808b1c731e36a65474010ebf894cdee5b9c1d9a9e883db341a9"
+              }
+          }) .then(function (response){
+            for (const item of response.data.data) {
+              console.log(user_id)
+              if(item.attributes.user_id == user_id){
+                this.isMocked = true;
+                console.log("allah")
+              }
+            }
+
+          }).catch(function () {
+        })
+        console.log(this.isMocked)
+    },
     goTest(){
-      this.$router.push('/pre-mock');
+      if(this.isMocked){
+        this.$router.push('/calendar');
+      }else{
+        this.$router.push('/pre-mock');
       window.localStorage.removeItem("slide")
+      }
+      
     }
   },
   mounted() {
     if(window.localStorage.getItem('token')){
       this.isLogin = true
     }
+    if(window.localStorage.getItem('isMocked') === "false"){
+      this.isMocked = false
+    } else if(window.localStorage.getItem('isMocked') === "true"){
+      this.isMocked = true
+    } 
+      console.log(this.isMocked)
   },
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
     <div class="w-full h-20 bg-gray flex justify-around flex-row items-center">
         <div>
-            <h1 class="text-indigo-500 text-2xl">IELTS tracker</h1>
+            <h1 class="text-indigo-500 text-2xl cursor-pointer" @click="goToMain">IELTS tracker</h1>
         </div>
         <div>
             <a href="/" class="mr-8 text-xl">
@@ -45,7 +45,11 @@ export default {
         },
         logout(){
             window.localStorage.clear()
+            window.location.replace("/")
             this.$router.go()
+        },
+        goToMain(){
+            this.$router.push('/')
         }
     },
     mounted() {

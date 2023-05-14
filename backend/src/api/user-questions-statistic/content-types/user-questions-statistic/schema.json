@@ -4,18 +4,14 @@
   "info": {
     "singularName": "user-questions-statistic",
     "pluralName": "user-questions-statistics",
-    "displayName": "User Questions Statistic"
+    "displayName": "User Questions Statistic",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "user_id": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "admin::user"
-    },
     "type1": {
       "type": "decimal"
     },
@@ -54,6 +50,12 @@
     },
     "type13": {
       "type": "decimal"
+    },
+    "user_id": {
+      "type": "integer"
+    },
+    "mark": {
+      "type": "integer"
     }
   }
 }

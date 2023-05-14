@@ -4,18 +4,14 @@
   "info": {
     "singularName": "user-study-schedule",
     "pluralName": "user-study-schedules",
-    "displayName": "User Study Schedule"
+    "displayName": "User Study Schedule",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "user_id": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "admin::user"
-    },
     "start_date": {
       "type": "date"
     },
@@ -23,6 +19,12 @@
       "type": "date"
     },
     "total_exercises": {
+      "type": "integer"
+    },
+    "exercises_done": {
+      "type": "integer"
+    },
+    "user_id": {
       "type": "integer"
     }
   }
