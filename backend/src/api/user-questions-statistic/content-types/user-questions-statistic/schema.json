@@ -36,21 +36,6 @@
     "type8": {
       "type": "decimal"
     },
-    "type9": {
-      "type": "decimal"
-    },
-    "type10": {
-      "type": "decimal"
-    },
-    "type11": {
-      "type": "decimal"
-    },
-    "type12": {
-      "type": "decimal"
-    },
-    "type13": {
-      "type": "decimal"
-    },
     "user_id": {
       "type": "integer"
     },

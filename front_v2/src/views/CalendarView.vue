@@ -70,31 +70,35 @@ export default {
                     console.log("ok")
                 }else{
                     let name
-                    if(this.mockResults[vehicle]){
-                        if(vehicle === "type1"){
-                            name = this.ex_types[0].attributes.name
-                        }else if(vehicle === "type2"){
-                            name = this.ex_types[1].attributes.name
-                        }else if(vehicle === "type3"){
-                            name = this.ex_types[2].attributes.name
-                        }else if(vehicle === "type4"){
-                            name = this.ex_types[3].attributes.name
-                        }else if(vehicle === "type5"){
-                            name = this.ex_types[4].attributes.name
-                        }else if(vehicle === "type6"){
-                            name = this.ex_types[5].attributes.name
-                        }else if(vehicle === "type7"){
-                            name = this.ex_types[6].attributes.name
-                        }else if(vehicle === "type8"){
-                            name = this.ex_types[7].attributes.name
+                    if(vehicle === "type1" || vehicle === "type2" || vehicle === "type3" || vehicle === "type4" || vehicle === "type5" || vehicle === "type6" || vehicle === "type7" || vehicle === "type8"){
+                        if(this.mockResults[vehicle] === null){
+                            this.mockResults[vehicle] = 0
                         }
-                        this.sortedRes.push([name, this.mockResults[vehicle]]);
                     }
+                    if(vehicle === "type1"){
+                        name = this.ex_types[0].attributes.name
+                    }else if(vehicle === "type2"){
+                        name = this.ex_types[1].attributes.name
+                    }else if(vehicle === "type3"){
+                        name = this.ex_types[2].attributes.name
+                    }else if(vehicle === "type4"){
+                        name = this.ex_types[3].attributes.name
+                    }else if(vehicle === "type5"){
+                        name = this.ex_types[4].attributes.name
+                    }else if(vehicle === "type6"){
+                        name = this.ex_types[5].attributes.name
+                    }else if(vehicle === "type7"){
+                        name = this.ex_types[6].attributes.name
+                    }else if(vehicle === "type8"){
+                        name = this.ex_types[7].attributes.name
+                    }
+                    this.sortedRes.push([name, this.mockResults[vehicle]]);
                 }
             }
             this.sortedRes.sort(function(a, b) {
                 return a[1] - b[1];
             });
+            console.log(this.sortedRes)
           })
         },
         getSchedule(){
